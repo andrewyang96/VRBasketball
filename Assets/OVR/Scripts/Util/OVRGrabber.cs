@@ -344,7 +344,8 @@ public class OVRGrabber : MonoBehaviour
 
     protected void GrabbableRelease(Vector3 linearVelocity, Vector3 angularVelocity)
     {
-        m_grabbedObj.GrabEnd(linearVelocity, angularVelocity);
+		const float SENSITIVITY = 2;
+		m_grabbedObj.GrabEnd(linearVelocity * SENSITIVITY, angularVelocity * SENSITIVITY);
         if(m_parentHeldObject) m_grabbedObj.transform.parent = null;
         m_grabbedObj = null;
     }
