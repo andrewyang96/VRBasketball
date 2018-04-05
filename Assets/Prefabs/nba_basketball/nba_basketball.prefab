@@ -9,46 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1982064218445244}
+  m_RootGameObject: {fileID: 1616858967334870}
   m_IsPrefabParent: 1
---- !u!1 &1982064218445244
+--- !u!1 &1616858967334870
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4520232039225544}
-  - component: {fileID: 33611331402810464}
-  - component: {fileID: 23100447206604360}
-  - component: {fileID: 95941861380106794}
-  - component: {fileID: 114831109307777206}
+  - component: {fileID: 4979618871465680}
+  - component: {fileID: 33626176076985202}
+  - component: {fileID: 135212675940769228}
+  - component: {fileID: 23505008972662636}
+  - component: {fileID: 54850899229135548}
+  - component: {fileID: 114323055249347070}
   m_Layer: 0
-  m_Name: NBA BASKETBALL
+  m_Name: nba_basketball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4520232039225544
+--- !u!4 &4979618871465680
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1982064218445244}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.486, y: 1.42, z: -0.151}
+  m_GameObject: {fileID: 1616858967334870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.269, y: 1.24, z: -0.389}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23100447206604360
+--- !u!23 &23505008972662636
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1982064218445244}
+  m_GameObject: {fileID: 1616858967334870}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -77,36 +78,34 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33611331402810464
+--- !u!33 &33626176076985202
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1982064218445244}
+  m_GameObject: {fileID: 1616858967334870}
   m_Mesh: {fileID: 4300000, guid: 677e1722a69ef214e84ae99a3d852457, type: 3}
---- !u!95 &95941861380106794
-Animator:
-  serializedVersion: 3
+--- !u!54 &54850899229135548
+Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1982064218445244}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 677e1722a69ef214e84ae99a3d852457, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114831109307777206
+  m_GameObject: {fileID: 1616858967334870}
+  serializedVersion: 2
+  m_Mass: 0.1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &114323055249347070
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1982064218445244}
+  m_GameObject: {fileID: 1616858967334870}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
@@ -117,3 +116,15 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+--- !u!135 &135212675940769228
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1616858967334870}
+  m_Material: {fileID: 13400000, guid: b206b993fa836d9459cf7078add5e068, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.48395437
+  m_Center: {x: -0.00000052154064, y: 0.0000045895586, z: 0.000016957525}
