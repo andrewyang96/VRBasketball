@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BasketballNetBehavior : MonoBehaviour {
+	MainBehavior mainScript;
 
 	// Use this for initialization
 	void Start () {
-		
+		mainScript = GameObject.Find ("Plane").GetComponent<MainBehavior> ();
 	}
 	
 	// Update is called once per frame
@@ -14,7 +15,11 @@ public class BasketballNetBehavior : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter () {
-		print ("Score!");
+	void OnTriggerEnter (Collider other) {
+		Rigidbody rb = other.gameObject.GetComponent<Rigidbody> ();
+		if (rb.velocity.y < 0) {
+			// if the ball is coming down
+			mainScript.incrementScore ();
+		}
 	}
 }

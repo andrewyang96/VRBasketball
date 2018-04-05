@@ -7,69 +7,76 @@ public class MainBehavior : MonoBehaviour
 
     public enum GameState
     {
-        MAINMENU,
-        GAMESTART,
-        GAMEREADY,
-        GAMECOUNTDOWN,
-        GAMEOVER
+        MAIN_MENU,
+        GAME_START,
+        GAME_READY,
+        GAME_COUNTDOWN,
+        GAME_OVER
     }
 
     public GameState s;
     public float countUp = 0.0f;
     public float endTime = 3.0f;
+	private int score;
+
     // Use this for initialization
     void Start()
     {
-        s = GameState.MAINMENU;
+        s = GameState.MAIN_MENU;
         Debug.Log("start");
-
+		score = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (OVRInput.Get(OVRInput.Button.Start) && (s == GameState.MAINMENU))
+        if (OVRInput.Get(OVRInput.Button.Start) && (s == GameState.MAIN_MENU))
         { //start button pressed
             Debug.Log("mode chosen");
-            s = GameState.GAMEREADY;
+            s = GameState.GAME_READY;
         }
 
         //Debug.log(countdown);
-        if (s == GameState.GAMEREADY)
+        if (s == GameState.GAME_READY)
         {
             Debug.Log(countUp);
             //animation
             countUp += Time.deltaTime;
             if (countUp >= 3.0f)
             {
-                s = GameState.GAMECOUNTDOWN;
+                s = GameState.GAME_COUNTDOWN;
                 countUp = 0.0f;
             }
         }
-        else if (s == GameState.GAMECOUNTDOWN)
+        else if (s == GameState.GAME_COUNTDOWN)
         {
             Debug.Log("game play");
             Debug.Log(countUp);
             countUp += Time.deltaTime;
             if (countUp >= endTime)
             {
-                s = GameState.GAMEOVER;
+                s = GameState.GAME_OVER;
                 countUp = 0.0f;
             }
         }
-        else if (s == GameState.GAMEOVER)
+        else if (s == GameState.GAME_OVER)
         {
             Debug.Log("game over");
             Debug.Log(countUp);
             countUp += Time.deltaTime;
             if (countUp >= 3.0f)
             {
-                s = GameState.MAINMENU;
+                s = GameState.MAIN_MENU;
                 countUp = 0.0f;
             }
         }
 
 
     }
+
+	public void incrementScore() {
+		print ("Score!");
+		score += 1;
+	}
 }
