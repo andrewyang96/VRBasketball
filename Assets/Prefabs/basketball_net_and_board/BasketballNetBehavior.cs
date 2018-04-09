@@ -7,7 +7,7 @@ public class BasketballNetBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		mainScript = GameObject.Find ("Plane").GetComponent<MainBehavior> ();
+		mainScript = GameObject.Find ("Floor").GetComponent<MainBehavior> ();
 	}
 	
 	// Update is called once per frame
