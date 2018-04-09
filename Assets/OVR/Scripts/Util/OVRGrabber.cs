@@ -347,9 +347,10 @@ public class OVRGrabber : MonoBehaviour
 		// fudge physics
 		const float SENSITIVITY = 2.5f;
 		m_grabbedObj.GrabEnd(linearVelocity * SENSITIVITY, angularVelocity * SENSITIVITY);
+		GameObject.Find ("Floor").GetComponent<MainBehavior> ().respawnBasketball (m_grabbedObj.gameObject);
+
         if(m_parentHeldObject) m_grabbedObj.transform.parent = null;
         m_grabbedObj = null;
-		GameObject.Find ("Floor").GetComponent<MainBehavior> ().respawnBasketball ();
     }
 
     protected virtual void GrabVolumeEnable(bool enabled)

@@ -19,6 +19,7 @@ public class MainBehavior : MonoBehaviour
     public float endTime = 3.0f;
 	private int score;
 	private GameObject basketballPrefab;
+	private GameObject mostRecentBasketball;
 
     // Use this for initialization
     void Start()
@@ -83,7 +84,13 @@ public class MainBehavior : MonoBehaviour
 		score += 1;
 	}
 
-	public void respawnBasketball() {
-		Instantiate (basketballPrefab, new Vector3 (0, 0.25f, 0.25f), Quaternion.identity);
+	private void respawnBasketball() {
+		mostRecentBasketball = Instantiate (basketballPrefab, new Vector3 (0, 0.25f, 0.25f), Quaternion.identity);
+	}
+
+	public void respawnBasketball(GameObject basketballThrown) {
+		if (basketballThrown != mostRecentBasketball)
+			return;
+		respawnBasketball ();
 	}
 }
