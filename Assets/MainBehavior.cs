@@ -18,6 +18,7 @@ public class MainBehavior : MonoBehaviour
     public float countUp = 0.0f;
     public float endTime = 3.0f;
 	private int score;
+	private GameObject basketballPrefab;
 
     // Use this for initialization
     void Start()
@@ -25,6 +26,8 @@ public class MainBehavior : MonoBehaviour
         s = GameState.MAIN_MENU;
         Debug.Log("start");
 		score = 0;
+		basketballPrefab = (GameObject)Resources.Load ("Prefabs/nba_basketball", typeof (GameObject));
+		respawnBasketball ();
     }
 
     // Update is called once per frame
@@ -78,5 +81,9 @@ public class MainBehavior : MonoBehaviour
 	public void incrementScore() {
 		print ("Score!");
 		score += 1;
+	}
+
+	public void respawnBasketball() {
+		Instantiate (basketballPrefab, new Vector3 (0, 0.25f, 0.25f), Quaternion.identity);
 	}
 }
