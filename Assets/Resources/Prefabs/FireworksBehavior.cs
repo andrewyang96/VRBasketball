@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplodingDustBehavior : MonoBehaviour {
+public class FireworksBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		// dust explosion effect lasts 0.25 seconds
-		Destroy (gameObject, 0.3f);
+		// fireworks last 0.5 seconds
+		Destroy (gameObject, 0.55f);
 	}
 	
 	// Update is called once per frame
