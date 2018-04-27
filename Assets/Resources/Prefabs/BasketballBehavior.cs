@@ -7,6 +7,7 @@ public class BasketballBehavior : MonoBehaviour {
 	float destroyCountdown;
 	const float MAX_DESTROY_TIME = 2f;
 	const float MAGNITUDE_THRESHOLD = 1f;
+	const float Y_COORD_LIMIT = -10f;
 	bool wasThrown;
 
 	// Use this for initialization
@@ -22,14 +23,23 @@ public class BasketballBehavior : MonoBehaviour {
 		if (wasThrown && rb.velocity.magnitude < MAGNITUDE_THRESHOLD) {
 			if (destroyCountdown <= 0) {
 				// destroy self once enough time has elapsed & initiate exploding dust effect
-				Destroy (gameObject);
-				Instantiate (explodingDust, transform.position, transform.rotation);
+				destroySelfAnimation ();
 			}
 			destroyCountdown -= Time.deltaTime;
 			print (destroyCountdown);
 		} else {
 			destroyCountdown = MAX_DESTROY_TIME;
 		}
+
+		// otherwise destroy self if y-coordinate is too low
+		if (transform.position.y < Y_COORD_LIMIT) {
+			destroySelfAnimation ();
+		}
+	}
+
+	void destroySelfAnimation() {
+		Destroy (gameObject);
+		Instantiate (explodingDust, transform.position, transform.rotation);
 	}
 
 	public void setWasThrown(bool thrown) {
