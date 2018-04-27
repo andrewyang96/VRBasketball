@@ -26,7 +26,6 @@ public class BasketballBehavior : MonoBehaviour {
 				destroySelfAnimation ();
 			}
 			destroyCountdown -= Time.deltaTime;
-			print (destroyCountdown);
 		} else {
 			destroyCountdown = MAX_DESTROY_TIME;
 		}
