@@ -114,7 +114,7 @@ public class MainBehavior : MonoBehaviour
 	}
 
 	private void respawnBasketball() {
-		mostRecentBasketball = Instantiate (basketballPrefab, new Vector3 (0, 0.25f, 0.25f), Quaternion.identity);
+		mostRecentBasketball = Instantiate (basketballPrefab, new Vector3 (-1.2f, 1.5f, 0f), Quaternion.identity);
 	}
 
 	public void respawnBasketball(GameObject basketballThrown) {
