@@ -6,8 +6,8 @@ public class FireworksBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		// fireworks last 0.5 seconds
-		Destroy (gameObject, 0.55f);
+		// fireworks last 1.5 seconds
+		Destroy (gameObject, 1.55f);
 	}
 	
 	// Update is called once per frame
