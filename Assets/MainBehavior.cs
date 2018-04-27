@@ -8,20 +8,20 @@ public class MainBehavior : MonoBehaviour
     public enum GameState
     {
         MAIN_MENU,
-        GAME_START,
         GAME_COUNTDOWN_TO_START,
         GAME_PLAY,
         GAME_OVER
     }
 
     public GameState s;
-    public float countUp = 10.0f;
+    public float countDown = 3.0f;
 	public int score;
 	private GameObject basketballPrefab;
 	private GameObject mostRecentBasketball;
 	public GameObject mainMenu;
 	public GameObject timeDisplay;
 	public GameObject scoreDisplay;
+	public GameObject countdownToStartDisplay;
 
 	public bool isInTimedGame = true;
 
@@ -38,60 +38,72 @@ public class MainBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		TimeTrialGameStateMachine();
+		//updates time
+		GameStateMachine();
+		GameLogic ();
+    }
 
+	public void GameLogic(){
+		//these if and else statements just update the menus based on the game state
+		//display only the start menu, hide the score and countdown displays
 		if (s == GameState.MAIN_MENU) {
 			mainMenu.SetActive (true);
-			timeDisplay.SetActive (false);
-			scoreDisplay.SetActive (false);
 		} 
 		else {
 			mainMenu.SetActive (false);
+		}
+		//display the countdown menu
+		if (s == GameState.GAME_COUNTDOWN_TO_START) {
+			countdownToStartDisplay.SetActive (true);
+		} else {
+			countdownToStartDisplay.SetActive (false);
+		}
+		//display the score and gameplay countdowns
+		if (s == GameState.GAME_PLAY) {
 			timeDisplay.SetActive (true);
 			scoreDisplay.SetActive (true);
-			
+		} else {
+			timeDisplay.SetActive (false);
+			scoreDisplay.SetActive (false);
 		}
 
-    }
+	}
 		
-	public void TimeTrialGameStateMachine(){
+	public void GameStateMachine(){
+		//start button pressed
 		if (OVRInput.Get(OVRInput.Button.Start) && (s == GameState.MAIN_MENU))
-		{ //start button pressed
+		{
 			Debug.Log("mode chosen");
 			s = GameState.GAME_COUNTDOWN_TO_START;
 		}
 		else if (s == GameState.GAME_COUNTDOWN_TO_START)
 		{
-			Debug.Log(countUp);
 			Debug.Log ("countdown to start");
-			//animation
-			countUp -= Time.deltaTime;
-			if (countUp <= 0.0f)
+			countDown = countDown - Time.deltaTime;
+			if (countDown <= 0.0f)
 			{
 				s = GameState.GAME_PLAY;
-				countUp = 10.0f;
+				countDown = 10.0f;
 			}
 		}
 		else if (s == GameState.GAME_PLAY)
 		{
 			Debug.Log("game play");
-			Debug.Log(countUp);
-			countUp -= Time.deltaTime;
-			if (countUp <= 0.0f)
+			countDown -= Time.deltaTime;
+			if (countDown <= 0.0f)
 			{
 				s = GameState.GAME_OVER;
-				countUp = 3.0f;
+				countDown = 3.0f;
 			}
 		}
 		else if (s == GameState.GAME_OVER)
 		{
-			Debug.Log("game over");
-			Debug.Log(countUp);
-			countUp -= Time.deltaTime;
-			if (countUp >= 0.0f)
+			Debug.Log ("game over");
+			countDown -= Time.deltaTime;
+			if (countDown <= 0.0f)
 			{
 				s = GameState.MAIN_MENU;
-				countUp = 3.0f;
+				countDown = 3.0f;
 			}
 		}
 	}
