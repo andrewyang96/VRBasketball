@@ -9,17 +9,21 @@ public class MainBehavior : MonoBehaviour
     {
         MAIN_MENU,
         GAME_START,
-        GAME_READY,
-        GAME_COUNTDOWN,
+        GAME_COUNTDOWN_TO_START,
+        GAME_PLAY,
         GAME_OVER
     }
 
     public GameState s;
-    public float countUp = 0.0f;
-    public float endTime = 3.0f;
-	private int score;
+    public float countUp = 10.0f;
+	public int score;
 	private GameObject basketballPrefab;
 	private GameObject mostRecentBasketball;
+	public GameObject mainMenu;
+	public GameObject timeDisplay;
+	public GameObject scoreDisplay;
+
+	public bool isInTimedGame = true;
 
     // Use this for initialization
     void Start()
@@ -34,50 +38,63 @@ public class MainBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (OVRInput.Get(OVRInput.Button.Start) && (s == GameState.MAIN_MENU))
-        { //start button pressed
-            Debug.Log("mode chosen");
-            s = GameState.GAME_READY;
-        }
+		TimeTrialGameStateMachine();
 
-        //Debug.log(countdown);
-        if (s == GameState.GAME_READY)
-        {
-            Debug.Log(countUp);
-            //animation
-            countUp += Time.deltaTime;
-            if (countUp >= 3.0f)
-            {
-                s = GameState.GAME_COUNTDOWN;
-                countUp = 0.0f;
-            }
-        }
-        else if (s == GameState.GAME_COUNTDOWN)
-        {
-            Debug.Log("game play");
-            Debug.Log(countUp);
-            countUp += Time.deltaTime;
-            if (countUp >= endTime)
-            {
-                s = GameState.GAME_OVER;
-                countUp = 0.0f;
-            }
-        }
-        else if (s == GameState.GAME_OVER)
-        {
-            Debug.Log("game over");
-            Debug.Log(countUp);
-            countUp += Time.deltaTime;
-            if (countUp >= 3.0f)
-            {
-                s = GameState.MAIN_MENU;
-                countUp = 0.0f;
-            }
-        }
-
+		if (s == GameState.MAIN_MENU) {
+			mainMenu.SetActive (true);
+			timeDisplay.SetActive (false);
+			scoreDisplay.SetActive (false);
+		} 
+		else {
+			mainMenu.SetActive (false);
+			timeDisplay.SetActive (true);
+			scoreDisplay.SetActive (true);
+			
+		}
 
     }
+		
+	public void TimeTrialGameStateMachine(){
+		if (OVRInput.Get(OVRInput.Button.Start) && (s == GameState.MAIN_MENU))
+		{ //start button pressed
+			Debug.Log("mode chosen");
+			s = GameState.GAME_COUNTDOWN_TO_START;
+		}
+		else if (s == GameState.GAME_COUNTDOWN_TO_START)
+		{
+			Debug.Log(countUp);
+			Debug.Log ("countdown to start");
+			//animation
+			countUp -= Time.deltaTime;
+			if (countUp <= 0.0f)
+			{
+				s = GameState.GAME_PLAY;
+				countUp = 10.0f;
+			}
+		}
+		else if (s == GameState.GAME_PLAY)
+		{
+			Debug.Log("game play");
+			Debug.Log(countUp);
+			countUp -= Time.deltaTime;
+			if (countUp <= 0.0f)
+			{
+				s = GameState.GAME_OVER;
+				countUp = 3.0f;
+			}
+		}
+		else if (s == GameState.GAME_OVER)
+		{
+			Debug.Log("game over");
+			Debug.Log(countUp);
+			countUp -= Time.deltaTime;
+			if (countUp >= 0.0f)
+			{
+				s = GameState.MAIN_MENU;
+				countUp = 3.0f;
+			}
+		}
+	}
 
 	public void incrementScore() {
 		print ("Score!");
