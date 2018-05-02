@@ -8,14 +8,16 @@ public class game_over_text : MonoBehaviour {
 
 	public Text C;
 	public float timeLeft;
+	private int score;
 
 	// Use this for initialization
 	void Start () {
 		
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		C.text = "Game Over!";
+		score = GameObject.Find("Floor").GetComponent<MainBehavior>().score;
+		C.text = "game over\n" + "your score was " + score.ToString();
 	}
 }

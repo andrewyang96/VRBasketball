@@ -17,6 +17,6 @@ public class countdown : MonoBehaviour {
 	void Update () {
 		timeLeft = GameObject.Find("Floor").GetComponent<MainBehavior>().countDown;
 		timeLeft = Mathf.CeilToInt (timeLeft);
-		C.text = "Time:\n" + timeLeft.ToString();
+		C.text = "TIME:\n" + timeLeft.ToString();
 	}
 }

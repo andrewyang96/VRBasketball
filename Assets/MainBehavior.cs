@@ -83,6 +83,7 @@ public class MainBehavior : MonoBehaviour
 			Debug.Log("mode chosen");
 			s = GameState.GAME_COUNTDOWN_TO_START;
 			countDown = 3.0f; // 3 seconds countdown
+			score = 0; // reset score
 		}
 		else if (s == GameState.GAME_COUNTDOWN_TO_START)
 		{
@@ -102,7 +103,6 @@ public class MainBehavior : MonoBehaviour
 			{
 				s = GameState.GAME_OVER;
 				countDown = 3.0f; // 3 seconds showing game over screen
-				score = 0;
 			}
 		}
 		else if (s == GameState.GAME_OVER)
