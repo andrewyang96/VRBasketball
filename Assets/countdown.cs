@@ -16,6 +16,7 @@ public class countdown : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timeLeft = GameObject.Find("Floor").GetComponent<MainBehavior>().countDown;
-		C.text = "Time remaining: " + timeLeft.ToString("F2");
+		timeLeft = Mathf.CeilToInt (timeLeft);
+		C.text = "Time:\n" + timeLeft.ToString();
 	}
 }

@@ -15,6 +15,7 @@ public class countdown_to_start : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		readycounter = GameObject.Find ("Floor").GetComponent<MainBehavior> ().countDown;
-		C.text = readycounter.ToString ("F2");
+		readycounter = Mathf.CeilToInt (readycounter);
+		C.text = readycounter.ToString();
 	}
 }
