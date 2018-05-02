@@ -16,7 +16,6 @@ public class scoring : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		score = GameObject.Find("Floor").GetComponent<MainBehavior>().score;
-		score *= 2;
 		C.text = "Score:\n" + score.ToString();
 	}
 }
