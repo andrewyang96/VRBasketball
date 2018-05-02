@@ -22,6 +22,7 @@ public class MainBehavior : MonoBehaviour
 	public GameObject timeDisplay;
 	public GameObject scoreDisplay;
 	public GameObject countdownToStartDisplay;
+	public GameObject gameOverDisplay;
 
 	public bool isInTimedGame = true;
 
@@ -65,6 +66,12 @@ public class MainBehavior : MonoBehaviour
 		} else {
 			timeDisplay.SetActive (false);
 			scoreDisplay.SetActive (false);
+		}
+
+		if (s == GameState.GAME_OVER) {
+			gameOverDisplay.SetActive (true);
+		} else {
+			gameOverDisplay.SetActive (false);
 		}
 
 	}
